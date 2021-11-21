@@ -10,6 +10,9 @@ Weekend  = ['Sabtu','Minggu']
 counter  = 0
 diskon   = 0
 
+
+
+
 #Fungsi untuk jam
 def waktu():
     Jam     = time.localtime()
@@ -19,8 +22,8 @@ def waktu():
 
 #Fungsi untuk menu
 def Pesann():
-    Coba="y"
-    while Coba=="y":
+    coba = 'y'
+    while coba == "y": 
         os.system('cls')
         print(waktu(),"WITA")
         print("""
@@ -50,12 +53,12 @@ def Pesann():
         4. Mendapat Diskon saat weekend sebesar 5%
         ==================================================================
         """)
-        ulang = 'a'
+        ulang    = 'a'
         while ulang == 'a':      
             pesan=str(input("masukkan list abjad menu : "))
 
             if pesan == 'a' or 'A':
-                balik = 'b'
+                balik    = 'b'
                 while balik == 'b':
                     jumlahpesan1 = int(input("masukkan jumlah pesanan : "))
                     hari = str(input("Hari apa sekarang ? : "))
@@ -78,6 +81,40 @@ def Pesann():
                             print("Jumlah Bayar :", totalharga1)
                             print("--------------------------")
                             print("Anda mendapatkan diskon pemesanan sebesar 10% ")
+                            Bayar = input("Mau bayar pakai apa ? (Tunai, E-money) : ")
+
+                            oke      = 'c'
+                            while oke == 'c':
+                                if Bayar == 'E-money' :
+                                        print("--------------------------")
+                                        print("Tasty Coffe")
+                                        print("Hari :", hari)
+                                        print("--------------------------")
+                                        print("Menu :",listnama1)
+                                        print("Jumlah Pesan :", jumlahpesan1)
+                                        print("Harga :", harga1)
+                                        print("Diskon :", diskon + (harga1 * 10/100))
+                                        print("--------------------------")
+                                        print("Jumlah Bayar :", totalharga1 - (harga1 * 10/100))
+                                        print("------------------------------------------------")
+                                        print("Anda mendapatkan diskon pemesanan dan E-money sebesar 10 % + 10 %")
+                                
+                                elif Bayar == 'Tunai' or 'tunai':
+                                        print("--------------------------")
+                                        print("Tasty Coffe")
+                                        print("--------------------------")
+                                        print("Menu :",listnama1)
+                                        print("Jumlah Pesan :", jumlahpesan1)
+                                        print("Harga :", harga1)
+                                        print("Diskon :", diskon1)
+                                        print("--------------------------")
+                                        print("Jumlah Bayar :", totalharga1)
+                                        print("------------------------------------------------")
+                                        print("Anda mendapatkan diskon pemesanan sebesar 10 % ")
+
+                                else :
+                                    print("Metode pembayaran salah, silahkan pilih kembali")
+                                    oke = 'c'
 
                         elif hari in Weekend:
                             diskon1     = int(harga1 * 10/100)
@@ -98,10 +135,7 @@ def Pesann():
 
                         else:
                             print("Hari yang anda masukkan salah, silahkan coba lagi")
-
-                    a = input("Apakah anda ingin memesan kembali?")
-                    if a == 'y' or 'Y' :
-                        ulang = 'a'
+                            balik = 'b'
                     
                     elif jumlahpesan1 < 2:
                         if hari in Weekdays: 
@@ -116,6 +150,7 @@ def Pesann():
                             print("--------------------------")
                             print("Jumlah Bayar :", totalharga1)
                             print("--------------------------")
+
                         
                         elif hari in Weekend:
                             diskon1_2   = int(harga1 * 5/100)
@@ -134,9 +169,9 @@ def Pesann():
                             print("Anda mendapatkan diskon weekend sebesar 5% ")
 
 
-                else:
-                    print("Jumlah pesanan salah, silahkan coba kembali")
-                    ulang = 'a'
+                    else:
+                        print("Jumlah pesanan salah, silahkan coba kembali")
+                        balik = 'b'
 
 
             elif pesan == 'b' or 'B':
