@@ -1,5 +1,6 @@
 import os
 import time
+import datetime
 
 #Daftar list2 yang ada
 Menu     = ['French Fries', ' Burger', 'Hotdog', 'Greentea', 'Thaitea', 'Cappucino', 'Milk Chocolate', 'Milk Strawberry']
@@ -10,28 +11,29 @@ Weekend  = ['Sabtu','Minggu']
 counter  = 0
 diskon   = 0
 
-
-
-
-#Fungsi untuk jam
 def waktu():
     Jam     = time.localtime()
     hour    = Jam.tm_hour
     minutes = Jam.tm_min
-    return ('{}:{}'.format(hour,minutes))
+    return ('{}:{}'.format(hour, minutes))
+
+hari1 = datetime.datetime.now().strftime("%A")
+
+
 
 #Fungsi untuk menu
 def Pesann():
     coba = 'y'
     while coba == "y": 
         os.system('cls')
-        print(waktu(),"WITA")
+        print(waktu(), 'WITA' )
+        print(hari1)
         print("""
         ==============================
         
                 Tasty Coffe
                 List Menu 
-    
+
         ==============================
 
         A. French Fries    : Rp 12.000
@@ -44,7 +46,7 @@ def Pesann():
         H. Milk Strawberry : Rp 17.000
 
         ==================================================================
-                                !!!Diskon List!!!
+                                !!!!Diskon List!!!
         ==================================================================
         
         1. Mendapat Diskon setiap Pembelian 3 Minuman sebesar 10%
@@ -60,48 +62,35 @@ def Pesann():
             if pesan == 'a' or 'A':
                 balik    = 'b'
                 while balik == 'b':
-                    jumlahpesan1 = int(input("masukkan jumlah pesanan : "))
-                    hari = str(input("Hari apa sekarang ? : "))
-                    listnama1    = Menu[0]
-                    harga1       = (Harga[0] * jumlahpesan1)
+                    try:
+                        jumlahpesan1 = int(input("masukkan jumlah pesanan : "))
+                        listnama1    = Menu[0]
+                        harga1       = (Harga[0] * jumlahpesan1)
 
-                    if jumlahpesan1 >= 3 :
-                        if hari in Weekdays:
-                            diskon1     = int(harga1 * 10/100)
-                            totalharga1 = int(harga1 - diskon1)
-                            print("--------------------------")
-                            print("Tasty Coffe")
-                            print("Hari :",hari)
-                            print("--------------------------")
-                            print("Menu         :", listnama1)
-                            print("Jumlah Pesan :", jumlahpesan1)
-                            print("Harga        :", harga1)
-                            print("Diskon       :", diskon1)
-                            print("--------------------------")
-                            print("Jumlah Bayar :", totalharga1)
-                            print("--------------------------")
-                            print("Anda mendapatkan diskon pemesanan sebesar 10% ")
-                            Bayar = input("Mau bayar pakai apa ? (Tunai, E-money) : ")
-
-                            oke      = 'c'
-                            while oke == 'c':
-                                if Bayar == 'E-money' :
+                        if jumlahpesan1 >= 3 :
+                            if hari1 == 'Saturday' or 'Sunday ':
+                                diskon1     = int(harga1 * 10/100)
+                                diskon1_1   = int(diskon1 - (harga1 * 5/100))
+                                totalharga1 = int(harga1 - diskon1 - diskon1_1)
+                                print("--------------------------")
+                                print("Tasty Coffe")
+                                print("Hari :",hari1)
+                                print("--------------------------")
+                                print("Menu         :", listnama1)
+                                print("Jumlah Pesan :", jumlahpesan1)
+                                print("Harga        :", harga1)
+                                print("Diskon       :", diskon1 + diskon1_1)
+                                print("--------------------------")
+                                print("Jumlah Bayar :", totalharga1)
+                                print("--------------------------")
+                                print("Anda mendapatkan diskon pemesanan dan weekend sebesar 10 % + 5 % ")
+                                Bayar = input("Mau bayar Tunai atau E-money ? (1 atau 2) : ")
+                                oke  = 'c'
+                                while oke == 'c':
+                                    if Bayar == '1' :
                                         print("--------------------------")
                                         print("Tasty Coffe")
-                                        print("Hari :", hari)
-                                        print("--------------------------")
-                                        print("Menu :",listnama1)
-                                        print("Jumlah Pesan :", jumlahpesan1)
-                                        print("Harga :", harga1)
-                                        print("Diskon :", diskon + (harga1 * 10/100))
-                                        print("--------------------------")
-                                        print("Jumlah Bayar :", totalharga1 - (harga1 * 10/100))
-                                        print("------------------------------------------------")
-                                        print("Anda mendapatkan diskon pemesanan dan E-money sebesar 10 % + 10 %")
-                                
-                                elif Bayar == 'Tunai' or 'tunai':
-                                        print("--------------------------")
-                                        print("Tasty Coffe")
+                                        print("Hari :", hari1)
                                         print("--------------------------")
                                         print("Menu :",listnama1)
                                         print("Jumlah Pesan :", jumlahpesan1)
@@ -111,72 +100,118 @@ def Pesann():
                                         print("Jumlah Bayar :", totalharga1)
                                         print("------------------------------------------------")
                                         print("Anda mendapatkan diskon pemesanan sebesar 10 % ")
+                                    
+                                    elif Bayar == '2':
+                                        diskon1_1_1 = int(diskon1_1 - diskon1)
+                                        print("--------------------------")
+                                        print("Tasty Coffe")
+                                        print("Hari :", hari1)
+                                        print("--------------------------")
+                                        print("Menu :",listnama1)
+                                        print("Jumlah Pesan :", jumlahpesan1)
+                                        print("Harga :", harga1)
+                                        print("Diskon :", diskon1 + diskon1_1 + diskon1_1_1)
+                                        print("--------------------------")
+                                        print("Jumlah Bayar :", totalharga1 - diskon1_1_1)
+                                        print("------------------------------------------------")
+                                        print("Anda mendapatkan diskon pemesanan,E-money serta Weekend sebesar 10 % + 10 % + 5 %")
 
-                                else :
-                                    print("Metode pembayaran salah, silahkan pilih kembali")
-                                    oke = 'c'
 
-                        elif hari in Weekend:
-                            diskon1     = int(harga1 * 10/100)
-                            diskon1_2   = int(diskon1 - (harga1 * 5/100))
-                            totalharga1 = int(harga1 - diskon1 - diskon1_2)
-                            print("--------------------------")
-                            print("Tasty Coffe")
-                            print("Hari :",hari)
-                            print("--------------------------")
-                            print("Menu         :", listnama1)
-                            print("Jumlah Pesan :", jumlahpesan1)
-                            print("Harga        :", harga1)
-                            print("Diskon       :", diskon1 + diskon1_2)
-                            print("--------------------------")
-                            print("Jumlah Bayar :", totalharga1)
-                            print("--------------------------")
-                            print("Anda mendapatkan diskon pemesanan dan weekend sebesar 10% + 5% ")
+                                    else :
+                                        print("Metode pembayaran salah, silahkan pilih kembali")
+                                        oke = 'c'
 
-                        else:
-                            print("Hari yang anda masukkan salah, silahkan coba lagi")
-                            balik = 'b'
-                    
-                    elif jumlahpesan1 < 2:
-                        if hari in Weekdays: 
-                            totalharga = int(harga1)
-                            print("--------------------------")
-                            print("Tasty Coffe")
-                            print("Hari :",hari)
-                            print("--------------------------")
-                            print("Menu         :", listnama1)
-                            print("Jumlah Pesan :", jumlahpesan1)
-                            print("Harga        :", harga1)
-                            print("--------------------------")
-                            print("Jumlah Bayar :", totalharga1)
-                            print("--------------------------")
+                            else:
+                                diskon1     = int(harga1 * 10/100)
+                                totalharga1 = int(harga1 - diskon1)
+                                print("--------------------------")
+                                print("Tasty Coffe")
+                                print("Hari :",hari1)
+                                print("--------------------------")
+                                print("Menu         :", listnama1)
+                                print("Jumlah Pesan :", jumlahpesan1)
+                                print("Harga        :", harga1)
+                                print("Diskon       :", diskon1)
+                                print("--------------------------")
+                                print("Jumlah Bayar :", totalharga1)
+                                print("--------------------------")
+                                print("Anda mendapatkan diskon pemesanan sebesar 10 % ")
 
                         
-                        elif hari in Weekend:
-                            diskon1_2   = int(harga1 * 5/100)
-                            totalharga1 = int(harga1 - diskon1_2)
-                            print("--------------------------")
-                            print("Tasty Coffe")
-                            print("Hari :",hari)
-                            print("--------------------------")
-                            print("Menu         :", listnama1)
-                            print("Jumlah Pesan :", jumlahpesan1)
-                            print("Harga        :", harga1)
-                            print("Diskon       :", diskon1_2)
-                            print("--------------------------")
-                            print("Jumlah Bayar :", totalharga1)
-                            print("--------------------------")
-                            print("Anda mendapatkan diskon weekend sebesar 5% ")
+                        elif jumlahpesan1 < 2:
+                            if hari == 'Saturday' or 'Sunday ':
+                                diskon1     = int(harga1 * 5/100)
+                                totalharga1 = int(harga1 - diskon1)
+                                print("--------------------------")
+                                print("Tasty Coffe")
+                                print("Hari :",hari1)
+                                print("--------------------------")
+                                print("Menu         :", listnama1)
+                                print("Jumlah Pesan :", jumlahpesan1)
+                                print("Harga        :", harga1)
+                                print("Diskon       :", diskon1)
+                                print("--------------------------")
+                                print("Jumlah Bayar :", totalharga1)
+                                print("--------------------------")
+                                print("Anda mendapatkan diskon weekend sebesar 5 % ")
+                                oke1  = 'c'
+                                while oke1 == 'c':
+                                    Bayar = input("Mau bayar Tunai atau E-money ? (1 atau 2) : ")
+                                    if Bayar == '1' :
+                                            print("--------------------------")
+                                            print("Tasty Coffe")
+                                            print("Hari :", hari1)
+                                            print("--------------------------")
+                                            print("Menu :",listnama1)
+                                            print("Jumlah Pesan :", jumlahpesan1)
+                                            print("Harga :", harga1)
+                                            print("Diskon :", diskon1)
+                                            print("--------------------------")
+                                            print("Jumlah Bayar :", totalharga1)
+                                            print("------------------------------------------------")
+                                            print("Anda mendapatkan diskon weekend sebesar 5 % ")
+                                            
+                                    
+                                    elif Bayar == '2':
+                                            print("--------------------------")
+                                            print("Tasty Coffe")
+                                            print("Hari :", hari1)
+                                            print("--------------------------")
+                                            print("Menu :",listnama1)
+                                            print("Jumlah Pesan :", jumlahpesan1)
+                                            print("Harga :", harga1)
+                                            print("Diskon :", diskon1 + (harga1 * 10/100))
+                                            print("--------------------------")
+                                            print("Jumlah Bayar :", totalharga1 - (harga1 * 10/100))
+                                            print("------------------------------------------------")
+                                            print("Anda mendapatkan diskon Weekend dan E-money sebesar 5 % + 10 %")
 
 
-                    else:
+                                    else:
+                                        print("Metode pembayaran salah, silahkan pilih kembali")
+                                        oke1 = 'c'
+
+                            else:
+                                totalharga1 = int(harga1)
+                                print("--------------------------")
+                                print("Tasty Coffe")
+                                print("Hari :",hari1)
+                                print("--------------------------")
+                                print("Menu         :", listnama1)
+                                print("Jumlah Pesan :", jumlahpesan1)
+                                print("Harga        :", harga1)
+                                print("--------------------------")
+                                print("Jumlah Bayar :", harga1)
+                                print("--------------------------")
+
+
+                    except:
                         print("Jumlah pesanan salah, silahkan coba kembali")
                         balik = 'b'
 
 
             elif pesan == 'b' or 'B':
                 jumlahpesan2 = int(input("masukkan jumlah pesanan ="))
-                hari = str(input("Hari apa sekarang ? = "))
                 listnama2    = Menu[1]
                 harga2       = (Harga[1] * jumlahpesan2)
 
@@ -197,6 +232,7 @@ def Pesann():
 
                 else:
                     totalharga2 = int(harga2)
+                    diskon2     = int(harga2 * 10/100)
                     print("--------------------------")
                     print("Tasty Coffe")
                     print("Hari :",hari)
@@ -214,7 +250,7 @@ def Pesann():
                 hari = str(input("Hari apa sekarang ? = "))
                 listnama3   = Menu[2]
                 harga3       = int(Harga[2] * jumlahpesan3)
-                if jumlahpesan1 >= 3 :
+                if jumlahpesan3 >= 3 :
                     diskon3     = int(harga3 * 10/100)
                     totalharga3 = int(harga3 - diskon3)
                     print("--------------------------")
@@ -263,6 +299,7 @@ def Pesann():
                     print("--------------------------")
 
                 else :
+                    diskon4     = int(harga4 * 10/100)
                     totalharga4 = int(harga4)
                     print("--------------------------")
                     print("Tasty Coffe")
