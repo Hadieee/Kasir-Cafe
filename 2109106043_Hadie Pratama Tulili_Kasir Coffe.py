@@ -18,35 +18,39 @@ def waktu():
 
 #fungsi untuk metode pembayaran
 def bayar(hari, listnama, jumlahpesan, harga, diskonpesan, diskonhari, diskonbayar, totalharga):
-    Bayar = int(input("Mau bayar Tunai atau E-money ? (1 atau 2) : "))
-    if Bayar == '1' :
-        print("--------------------------")
-        print("Tasty Coffe")
-        print("Hari :", hari)
-        print("--------------------------")
-        print("Menu         :", listnama)
-        print("Jumlah Pesan :", jumlahpesan)
-        print("Harga        :", harga)
-        print("Diskon       :", diskonpesan)
-        print("--------------------------")
-        print("Jumlah Bayar :", totalharga)
-        print("------------------------------------------------")
-        print("Anda mendapatkan diskon pemesanan sebesar 10 % ")
+    try:
+        Bayar = int(input("Mau bayar Tunai atau E-money ? (1 atau 2) : "))
+        if Bayar == '1' :
+            print("--------------------------")
+            print("Tasty Coffe")
+            print("Hari :", hari)
+            print("--------------------------")
+            print("Menu         :", listnama)
+            print("Jumlah Pesan :", jumlahpesan)
+            print("Harga        :", harga)
+            print("Diskon       :", diskonpesan)
+            print("--------------------------")
+            print("Jumlah Bayar :", totalharga)
+            print("------------------------------------------------")
+            print("Anda mendapatkan diskon pemesanan sebesar 10 % ")
 
-    elif Bayar == '2':
-        diskonbayar = int(diskonhari - diskonpesan)
-        print("--------------------------")
-        print("Tasty Coffe")
-        print("Hari :", hari)
-        print("--------------------------")
-        print("Menu         :", listnama)
-        print("Jumlah Pesan :", jumlahpesan)
-        print("Harga        :", harga)
-        print("Diskon       :", diskonpesan + diskonbayar + diskonhari)
-        print("--------------------------")
-        print("Jumlah Bayar :", totalharga - diskonpesan - diskonbayar - diskonhari)
-        print("------------------------------------------------")
-        print("Anda mendapatkan diskon pemesanan,E-money serta Weekend sebesar 10 % + 10 % + 5 %")
+        elif Bayar == '2':
+            diskonbayar = int(diskonhari - diskonpesan)
+            print("--------------------------")
+            print("Tasty Coffe")
+            print("Hari :", hari)
+            print("--------------------------")
+            print("Menu         :", listnama)
+            print("Jumlah Pesan :", jumlahpesan)
+            print("Harga        :", harga)
+            print("Diskon       :", diskonpesan + diskonbayar + diskonhari)
+            print("--------------------------")
+            print("Jumlah Bayar :", totalharga - diskonpesan - diskonbayar - diskonhari)
+            print("------------------------------------------------")
+            print("Anda mendapatkan diskon pemesanan,E-money serta Weekend sebesar 10 % + 10 % + 5 %")
+
+    except ValueError:
+        print("Metode pembayaran salah, silahkan coba kembali")
 
 #def hari()
 
@@ -69,7 +73,7 @@ def pesanan(hari, listnama, jumlahpesan, harga, totalharga, diskonpesan):
         print("Jumlah Bayar :", totalharga)
         print("--------------------------")
 
-    time.sleep(2)
+    time.sleep(1)
 
 #Fungsi untuk menu
 def Pesann(hari):
@@ -95,10 +99,10 @@ def Pesann(hari):
                                 !!!!Diskon List!!!
         ==================================================================
         
-        1. Mendapat Diskon setiap Pembelian 3 Minuman sebesar 10%
-        2. Mendapat Diskon setiap Pembelian 4 Makanan sebesar 10%
-        3. Mendapat Diskon setiap pembayaran melalui E-money sebesar 10%
-        4. Mendapat Diskon saat weekend sebesar 5%
+        1. Mendapat Diskon setiap Pembelian 3 Makanan sebesar 10 %
+        2. Mendapat Diskon setiap Pembelian 4 Minuman sebesar 10 %
+        3. Mendapat Diskon setiap pembayaran melalui E-money sebesar 10 %
+        4. Mendapat Diskon saat weekend sebesar 5 %
         ==================================================================
         """)  
         pesan = str(input("masukkan list abjad menu : "))
@@ -305,23 +309,22 @@ def Pesann(hari):
 
                     counter = counter + totalharga
         else:
-            pilihan=input("Menu tidak ditemukan, silahkan masukkan abjad menu yang tersedia, silahkan ulangi kembali (Y/N) : ")
-            if pilihan == ('y'or 'Y') :
+            pilihan = input("Menu tidak ditemukan, silahkan masukkan abjad menu yang tersedia, silahkan ulangi kembali (Y/N) : ")
+            if pilihan.casefold == 'y':
                 continue
 
-            elif pilihan == ('n' or 'N') :
+            elif pilihan.casefold == 'n':
                 os.system('cls')
                 print("======================================\nTerimakasih :) Silahkan datang kembali\n======================================")
                 exit()
 
 
-        pilihan  = input("apakah anda ingin order kembali ? (Y/N) : ")
-        if pilihan.casefold == 'y':
+        pilih  = input("apakah anda ingin order kembali ? (Y/N) : ")
+        if pilih.casefold == 'y':
             continue
 
-        elif pilihan.casefold == 'n':
+        elif pilih.casefold == 'n':
             print(counter)
-            print("======================================\nTerimakasih :) Silahkan datang kembali\n======================================")
-            break
+            bayar(hari, listnama, jumlahpesan, harga, diskonpesan, diskonhari, diskonbayar, totalharga)
 
 Pesann(hari)
