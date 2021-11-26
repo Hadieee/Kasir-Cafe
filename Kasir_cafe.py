@@ -42,8 +42,20 @@ def metodebayar(hari, diskonpesan, diskonbayar, diskonhari):
                     if kembalian > 0:
                         print("Kembalian anda sebesar : Rp.", kembalian)
                         print("Terimakasih telah datang ke cafe kami :) Silahkan datang kembali")
+                        time.sleep(2)
+                        os.system('cls')
+                        
+
+                    elif kembalian == 0:
+                        print("Uang anda pas")
+                        print("Terimakasih telah datang ke cafe kami :) Silahkan datang kembali")
+                        time.sleep(2)
+                        os.system('cls')
+                        break
+
                     else:
                         print("Uang anda kurang")
+                        time.sleep(2)
 
                 elif pembayaran == 2:
                     print("--------------------------")
@@ -58,6 +70,15 @@ def metodebayar(hari, diskonpesan, diskonbayar, diskonhari):
                     if kembalian > 0:
                         print("Kembalian anda sebesar : Rp.", kembalian)
                         print("Terimakasih telah datang ke cafe kami :) Silahkan datang kembali")
+                        time.sleep(2)
+                        os.system('cls')
+
+                    elif kembalian == 0:
+                        print("Uang anda pas")
+                        print("Terimakasih telah datang ke cafe kami :) Silahkan datang kembali")
+                        time.sleep(2)
+                        os.system('cls')
+                        break
 
                     else:
                         print("Uang anda kurang")
@@ -81,6 +102,16 @@ def metodebayar(hari, diskonpesan, diskonbayar, diskonhari):
                     if kembalian > 0:
                         print("Kembalian anda sebesar : Rp.", kembalian)
                         print("Terimakasih telah datang ke cafe kami :) Silahkan datang kembali")
+                        time.sleep(2)
+                        os.system('cls')
+
+                    elif kembalian == 0:
+                        print("Uang anda pas")
+                        print("Terimakasih telah datang ke cafe kami :) Silahkan datang kembali")
+                        time.sleep(2)
+                        os.system('cls')
+                        break
+
                     else:
                         print("Uang anda kurang")
 
@@ -97,6 +128,16 @@ def metodebayar(hari, diskonpesan, diskonbayar, diskonhari):
                     if kembalian > 0:
                         print("Kembalian anda sebesar : Rp.", kembalian)
                         print("Terimakasih telah datang ke cafe kami :) Silahkan datang kembali")
+                        time.sleep(2)
+                        os.system('cls')
+                        break
+
+                    elif kembalian == 0:
+                        print("Uang anda pas")
+                        print("Terimakasih telah datang ke cafe kami :) Silahkan datang kembali")
+                        time.sleep(2)
+                        os.system('cls')
+                        break
 
                     else:
                         print("Uang anda kurang")
@@ -105,10 +146,6 @@ def metodebayar(hari, diskonpesan, diskonbayar, diskonhari):
                 else:
                     print("Metode pembayaran salah, silahkan coba kembali")
                     continue
-
-            time.sleep(2)
-            os.system('cls')
-            exit()
 
         except ValueError:
             print("Metode pembayaran salah, silahkan coba kembali")
@@ -232,7 +269,6 @@ def menu(counter, hari, diskonpesan, diskonbayar, diskonhari):
 
         else:
             print("Pilihan anda salah, silahkan coba kembali")
+            counter = 0
             time.sleep(2)
             continue
-
-menu(counter, hari, diskonpesan, diskonbayar, diskonhari)
