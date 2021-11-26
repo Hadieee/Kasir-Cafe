@@ -1,6 +1,7 @@
 import os
+import time
 import Setting_Akun
-import Setting_Menu2
+import Setting_Menu
 import Kasir_cafe
 
 def front_page(tampilan): 
@@ -38,9 +39,12 @@ def inpil3():   # pilihan 3 setting menu dan akun
         if pilkunmen == 1:
             Setting_Akun.loop()
         elif pilkunmen == 2:
-            Setting_Menu2.set_menu()
+            Setting_Menu.set_menu()
         else:
             print("masukan salah")
+
+def menuu():    # pilihan 2 kasir
+    Kasir_cafe.menu()
 
 main_menu = ("""
   MAIN MENU
@@ -51,12 +55,12 @@ main_menu = ("""
 [4] Keluar
 """)
 
-
+i = 4
 
 # untuk pilihan 1
 os.system('cls')
-i = 4
 while i >= 1 :
+    os.system('cls')
     front_page(tampilan='')
     pilog = input("masukkan pilihan (1/2)? ")
 
@@ -78,11 +82,11 @@ while i >= 1 :
                             print("\nmohon masukkan angka!\n")
                         else:
                             if pil1 == 1:
-                                Setting_Menu2.tampilan_menu()
+                                Setting_Menu.tampilan_menu()
                                 lanjut=input("tekan 'ENTER' untuk kembali ke 'MAIN MENU'")
                                 e = True
                             elif pil1 == 2:
-                                Kasir_cafe()
+                                menuu()
                             elif pil1 == 3:
                                 inpil3()
                             elif pil1 == 4:
@@ -97,6 +101,7 @@ while i >= 1 :
             else:
                 u-=1
                 print(f"data tidak valid, percobaan tersisa {u}")
+                time.sleep(2)
         
 
     ### jangan di ganggu gugat code di bawah ini ###
@@ -107,9 +112,5 @@ while i >= 1 :
 
     # untuk kesalahan masukan data
     else:
-        i-=1
-        print("data yang anda masukkan salah")
-        if i > 1 or i == 1:
-            print(f"coba ulang, sisa percobaan = {i}x")
-        elif i == 0:
-            print("anda gagal login")
+        print("pilihan yang anda masukkan salah")        
+        time.sleep(2)
