@@ -71,7 +71,7 @@ while i >= 1 :
             login = input("username : ")
             if login in Setting_Akun.users:
                 passw = input("password : ")
-                if passw in Setting_Akun.users[login]:
+                if passw == Setting_Akun.users[login]:
                     print("akun anda terdaftar dan anda sudah masuk")
                     e=3
                     while e>=1:
@@ -104,7 +104,6 @@ while i >= 1 :
                 time.sleep(2)
         
 
-    ### jangan di ganggu gugat code di bawah ini ###
     # untuk pilihan 1.2
     elif pilog == '2':
         print("semoga harimu menyenangkan")
